@@ -1,6 +1,7 @@
 # vue2-components
 
 > imageList: rearrange or delete images used for uploading multi images or other situations.
+try at https://fengma1992.github.io/vue2-components/index.html
 
 ## Build Setup
 
