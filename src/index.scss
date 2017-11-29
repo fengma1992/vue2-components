@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
+@import "scss/color";
 @import "iconfont/iconfont.css";
-@import "./components/imageList/index.scss";
+@import "./components/imageList/index";
+@import "components/imageListPreview/index";
 
 html, body {
     font-size: 100px;
 }
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -17,6 +20,42 @@ html, body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: map_get($color, color);
     margin-top: 60px;
+    font-size: .16rem;
+    > .component-container {
+        margin: .05rem;
+        padding: .05rem;
+        border: .02rem solid map_get($color, border-color);
+        > .introduction-area {
+            margin: .2rem;
+            > .type {
+                font-size: .16rem;
+                > .name {
+                    margin-left: .2rem;
+                    font-size: .2rem;
+                    font-weight: bold;
+                }
+            }
+            > .intro {
+                margin: .05rem 0;
+            }
+        }
+        > .reset-btn {
+            font-size: .2rem;
+            padding: .05rem;
+        }
+        > .img-list {
+            display: flex;
+            flex-wrap: wrap;
+            .img-container {
+                margin: .05rem;
+                .thumb-img {
+                    max-width: 1rem;
+                    max-height: .7rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }

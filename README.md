@@ -2,6 +2,8 @@
 
 > imageList: rearrange or delete images used for uploading multi images or other situations.
 
+> imageListPreview: fullScreen imageList preview. 
+
 
 try at https://fengma1992.github.io/vue2-components/index.html
 
@@ -26,5 +28,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

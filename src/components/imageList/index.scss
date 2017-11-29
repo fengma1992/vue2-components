@@ -20,11 +20,14 @@
                 margin-right: .04rem;
                 width: 1.6rem;
                 height: 1.5rem;
-                border: .01rem solid #ddddde;
-                img {
-                    max-width: 1.5rem;
-                    max-height: 1rem;
-                    cursor: zoom-in;
+                border: .01rem solid map_get($color, border-color);
+                .img-container {
+                    height: 1rem;
+                    img {
+                        max-width: 1.5rem;
+                        max-height: 1rem;
+                        cursor: zoom-in;
+                    }
                 }
                 .text {
                     width: 100%;
@@ -48,13 +51,13 @@
                         line-height: .2rem;
                         font-size: .12rem;
                         cursor: pointer;
-                        > .iconfont {
+                        > .icon {
                             font-size: .12rem;
                         }
                     }
                     .btn-disabled {
                         cursor: not-allowed;
-                        color: #cdcdce;
+                        color: map_get($color, disabled-color);
                     }
                 }
             }
@@ -62,7 +65,7 @@
                 margin-right: 0;
             }
         }
-        > .iconfont {
+        > .icon {
             position: absolute;
             top: 50%;
             transform: translate(0, -50%);
@@ -73,7 +76,7 @@
             cursor: pointer;
             color: #000000;
         }
-        > .iconfont:hover {
+        > .icon:hover {
             color: #fafafa;
             text-shadow: 0 0 .3rem #3c3d3e;
         }
@@ -99,7 +102,7 @@
             background-color: #ffffff;
             cursor: zoom-out;
         }
-        .iconfont {
+        .icon {
             position: fixed;
             z-index: 10002;
             top: .1rem;
@@ -110,7 +113,7 @@
             cursor: pointer;
             color: rgba(0, 0, 0, 0.6);
         }
-        .iconfont:hover {
+        .icon:hover {
             color: rgba(255, 145, 0, 0.6);
         }
     }

@@ -5,22 +5,24 @@
 <template>
     <div class='image-list-view'>
         <div class="preview">
-            <i v-if="showLeftArrow" class="iconfont icon-arrow-left" @click="goPre"></i>
+            <i v-if="showLeftArrow" class="icon icon-arrow-left" @click="goPre"></i>
             <div class="img-list">
                 <div v-for="(item, index) in thumbImgList" class='img-item'>
-                    <img :src="item.url" @click="showFullImg(item)">
+                    <div class="img-container">
+                        <img :src="item.url" @click="showFullImg(item)">
+                    </div>
                     <p class="text">{{item.name}}</p>
                     <div class="control">
                         <button :class='["btn", {"btn-disabled": index + startIndex < 1}]' @click="moveForward(item, index)">
-                            <i class="iconfont icon-arrow-left"></i>前移
+                            <i class="icon icon-arrow-left"></i>前移
                         </button>
                         <button :class='["btn", {"btn-disabled": index + startIndex >= imgList.length - 1}]' @click="moveBackward(item, index)">
-                            后移<i class="iconfont icon-arrow-right"></i></button>
+                            后移<i class="icon icon-arrow-right"></i></button>
                         <button class="btn" @click="removeItem(item, index)">删除</button>
                     </div>
                 </div>
             </div>
-            <i v-if="showRightArrow" class="iconfont icon-arrow-right" @click="goNext"></i>
+            <i v-if="showRightArrow" class="icon icon-arrow-right" @click="goNext"></i>
         </div>
         <div class="full-img-container" v-if="showFullImgFlag" @click="showFullImgFlag=false">
             <img :src="selectedImgUrl">
@@ -62,17 +64,24 @@
             }
         },
         mounted() {
-            this.thumbImgList = this.getThumbImgList();
-            // 根据控件宽度重算缩略图个数
-            THUMB_IMG_LENGTH = Math.floor((this.$el.getBoundingClientRect().width - 40) / 164);
-            this.$el.style.width = `${164 * THUMB_IMG_LENGTH + 40}px`;
+            window.addEventListener('resize', this.calculate);
+            this.calculate();
         },
         methods: {
             /**
+             * calculate THUMB_IMG_LENGTH
+             */
+            calculate() {
+                this.$el.style.width = ``; // reset component width
+                THUMB_IMG_LENGTH = Math.floor((this.$el.getBoundingClientRect().width - 40) / 164); // calculate THUMB_IMG_LENGTH
+                this.$el.style.width = `${164 * THUMB_IMG_LENGTH + 40}px`; // reset component width
+                this.thumbImgList = this.getThumbImgList();
+            },
+            /**
              * 设置图片源与预览大图index
              */
-            setImageList(imgList, startIndex = 0) {
-                this.imgList = imgList;
+            setImageList(imgList = [], startIndex = 0) {
+                this.imgList = imgList.slice(0);
                 this.setStartIndex(startIndex);
             },
             getImageList() {
@@ -151,6 +160,9 @@
                 this.setImageList(this.imgList, this.startIndex);
                 this.$emit('remove-img', item, this.imgList);
             },
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.calculate);
         },
     };
 </script>
