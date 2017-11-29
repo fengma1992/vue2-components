@@ -246,10 +246,11 @@ html, body {
           font-size: .2rem;
           font-weight: bold; }
       #app > .component-container > .introduction-area > .intro {
-        margin: .05rem; }
+        margin: .05rem 0; }
     #app > .component-container > .reset-btn {
       font-size: .2rem;
-      padding: .05rem; }
+      padding: .05rem;
+      background-color: transparent; }
     #app > .component-container > .img-list {
       display: flex;
       flex-wrap: wrap; }
